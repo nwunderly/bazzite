@@ -597,8 +597,10 @@ RUN --mount=type=cache,dst=/var/cache \
     if grep -q "kinoite" <<< "${BASE_IMAGE_NAME}"; then \
         dnf5 -y remove \
             steamdeck-kde-presets-desktop && \
-       dnf5 -y install \
+        dnf5 -y install \
             steamdeck-kde-presets \
+            plasma-bigscreen \
+            plasma-bigscreen-wayland
     ; else \
         ln -sf /usr/share/wallpapers/convergence.jxl /usr/share/backgrounds/default.jxl && \
         ln -sf /usr/share/wallpapers/convergence.jxl /usr/share/backgrounds/default-dark.jxl && \
@@ -684,17 +686,6 @@ RUN --mount=type=cache,dst=/var/cache \
     setfattr -n user.component -v "steam-bootstrap" /usr/share/gamescope-session-plus/bootstrap_steam.tar.gz && \
     setfattr -n user.update-interval -v "yearly" /usr/share/gamescope-session-plus/bootstrap_steam.tar.gz && \
     /ctx/cleanup
-
-# Install & Setup Plasma Bigscreen
-RUN --mount=type=cache,dst=/var/cache \
-    --mount=type=cache,dst=/var/cache/libdnf5 \
-    --mount=type=cache,dst=/var/log \
-    --mount=type=bind,from=ctx,source=/,target=/ctx \
-    --mount=type=tmpfs,dst=/tmp \
-    dnf5 -y install \
-        plasma-bigscreen \
-        plasma-bigscreen-wayland && \
-    steamosctl set-default-desktop-session plasma-bigscreen-wayland.desktop
 
     # Cleanup & Finalize
 RUN --mount=type=cache,dst=/var/cache \

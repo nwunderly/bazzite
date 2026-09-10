@@ -15,7 +15,7 @@ rm -f /etc/sddm.conf.d/zz-steamos-autologin.conf \
 if [[ ! -f ${DESKTOP_AUTOLOGIN} ]]; then
   SESSION="gamescope-session-ogui-steam.desktop"
 elif [[ ${BASE_IMAGE_NAME} =~ "kinoite" ]]; then
-  SESSION="plasma.desktop"
+  SESSION="plasma-bigscreen-wayland.desktop"
 elif [[ ${BASE_IMAGE_NAME} =~ "silverblue" ]]; then
   SESSION="gnome.desktop"
 else
