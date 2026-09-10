@@ -685,7 +685,18 @@ RUN --mount=type=cache,dst=/var/cache \
     setfattr -n user.update-interval -v "yearly" /usr/share/gamescope-session-plus/bootstrap_steam.tar.gz && \
     /ctx/cleanup
 
-# Cleanup & Finalize
+# Install & Setup Plasma Bigscreen
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/cache/libdnf5 \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    dnf5 -y install \
+        plasma-bigscreen \
+        plasma-bigscreen-wayland && \
+    steamosctl set-default-desktop-session plasma-bigscreen-wayland.desktop
+
+    # Cleanup & Finalize
 RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=cache,dst=/var/log \
