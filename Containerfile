@@ -600,7 +600,7 @@ RUN --mount=type=cache,dst=/var/cache \
         dnf5 -y install \
             steamdeck-kde-presets \
             plasma-bigscreen \
-            plasma-bigscreen-wayland
+            plasma-bigscreen-wayland \
     ; else \
         ln -sf /usr/share/wallpapers/convergence.jxl /usr/share/backgrounds/default.jxl && \
         ln -sf /usr/share/wallpapers/convergence.jxl /usr/share/backgrounds/default-dark.jxl && \
