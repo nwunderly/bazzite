@@ -111,7 +111,7 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          # - bazzite
+          - bazzite
           # - bazzite-gnome
           - bazzite-deck
           # - bazzite-deck-gnome
